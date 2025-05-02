@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exception Handling Programs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin: 10px 0;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Exception Handling in JavaScript</h1>
+
+  <button onclick="undeclaredVariable()">1. Undeclared Variable</button>
+  <div id="output1" class="output"></div>
+
+  <button onclick="divideByZero()">2. Divide by Zero</button>
+  <div id="output2" class="output"></div>
+
+  <button onclick="arrayOutOfBound()">3. Array Out of Bound</button>
+  <div id="output3" class="output"></div>
+
+  <button onclick="finallyExample()">4. Finally Block</button>
+  <div id="output4" class="output"></div>
+
+  <script>
+    function undeclaredVariable() {
+      try {
+        console.log(x); // x is not declared
+      } catch (error) {
+        document.getElementById("output1").innerText = "Exception caught: " + error.message;
+      }
+    }
+
+    function divideByZero() {
+      try {
+        let a = 10, b = 0;
+        if (b === 0) {
+          throw new Error("Divide by Zero Error");
+        }
+        let result = a / b;
+        document.getElementById("output2").innerText = "Result: " + result;
+      } catch (error) {
+        document.getElementById("output2").innerText = "Exception caught: " + error.message;
+      }
+    }
+
+    function arrayOutOfBound() {
+      try {
+        let arr = [1, 2, 3];
+        let index = 5;
+        if (index >= arr.length) {
+          throw new Error("Index " + index + " is out of bounds");
+        }
+        document.getElementById("output3").innerText = "Element: " + arr[index];
+      } catch (error) {
+        document.getElementById("output3").innerText = "Exception caught: " + error.message;
+      }
+    }
+
+    function finallyExample() {
+      try {
+        let result = 10 / 0;
+        if (!isFinite(result)) {
+          throw new Error("Divide by zero error");
+        }
+      } catch (error) {
+        document.getElementById("output4").innerHTML = "Exception caught: " + error.message + "<br>";
+      } finally {
+        document.getElementById("output4").innerHTML += "Finally block always runs.";
+      }
+    }
+  </script>
+
+</body>
+</html>
